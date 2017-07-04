@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					Getting Flexible with CSS3
+					<p>Jake LaCombe</p>
+					<p>HealtheIntent Infrastructure Frameworks</p>
+				</section>
+				<section>
+					<section>
+						<h1>Good ol' days</h1>
+						<p>Let's look at equal column height layouts</p>
+						<img src="http://matthewjamestaylor.com/blog/equal-height-columns-problem.gif" />
+					</section>
+					<section>
+						<pre><code data-trim>
+							<div id="one-true" class="group">
+							  <div class="col">
+							  	<h3>I am listed first in source order.</h3>
+							  	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+							  </div>
+							  <div class="col">
+							  	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+							  </div>
+							  <div class="col"><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p></div>
+							</div>
+						</code></pre>
+						<pre><code data-trim>
+							#one-true { overflow: hidden; }
+							#one-true .col {
+							  width: 27%;
+							  padding: 30px 3.15% 0;
+							  float: left;
+							  margin-bottom: -99999px;
+							  padding-bottom: 99999px;
+							}
+							#one-true .col:nth-child(1) { margin-left: 33.3%; background: #ccc; }
+							#one-true .col:nth-child(2) { margin-left: -66.3%; background: #eee; }
+							#one-true .col:nth-child(3) { left: 0; background: #eee; }
+							#one-true p { margin-bottom: 30px; } /* Bottom padding on col is busy */
+						</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim>
+							<div id="one-true" class="group">
+							  <div class="col">
+							  	<h3>I am listed first in source order.</h3>
+							  	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+							  </div>
+							  <div class="col">
+							  	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+							  </div>
+							  <div class="col">
+							  	<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+							  </div>
+							</div>
+						</code></pre>
+						<pre><code data-trim>              
+#one-true { 
+  display: flex;
+  flex-direction: row;
+}
+#one-true .col { padding: 30px 3.15% 0; flex: 1; }
+#one-true .col:nth-child(1) { background: #ccc; order: 2; }
+#one-true .col:nth-child(2) { background: #eee; }
+#one-true .col:nth-child(3) { background: #eee; order: 3;}
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<h2>What is a flexbox?</h2>
+					<p>Firefox Definition: Algorithm determining the position and the size of boxes based on the way they interact with their sibling and ancestor boxes</p>
+					<br />
+					<p>Easy Definition: A container that allows your elements to easily resize their width and height based on their container widths and relative siblings. No need to set widths or heights.</p>
+				</section>
+				<section>
+					<h2>Cool Features</h2>
+					<p>Easily switch diretion of the children</p>
+					<p>Switch element order on the fly (vertical or horizontal)</p>
+					<p>Coveted Text in middle of the element with ease.</p>
+				</section>
+				<section>
+					<section>
+						<h2>Getting Started</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								<div class="flex"></div>
+							</code>
+						</pre>
+						<pre>
+							<code data-trim>
+							.flex {
+								display: flex;
+							}
+							</code>
+						</pre>
+						<p><code>inline-flex</code> is an option as well. It works just like <code>inline-block</code>.</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>
+							Beginner actions
+						</h3>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								flex-direction: (row | column)
+							</code>
+						</pre>
+						<p>Determines the flow of the items inside the flex container.</p>
+						<figure class="sample-figure">
+							<figcaption>column</figcaption>
+							<img src="img/direction-column.png" width="450" />
+						</figure>
+						<figure class="sample-figure">
+							<figcaption>row</figcaption>
+							<img src="img/direction-row.png" width="450" />
+						</figure>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								order: (number)
+							</code>
+						</pre>
+						<p>Determines the ordering of elements. Works like reverse z-index.</p>
+						<img src="img/flex-normal.png" />
+						<img src="img/flex-reordered.png" />
+					</section>
+					<section>
+						<p>Order goes by value of order on the item and compares that to siblings. (2 does not mean 2nd in order)</p>
+						<img src="img/ordering-guide.png" />
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>
+							Basic Navbar
+						</h3>
+					</section>
+					<section>
+						<img src="img/flex-navigation.png" />
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								<div class="navigation">
+								  <a href="#">Home</a>
+								  <div class="main-links">
+								    <a href="#">Docs</a>
+								    <a href="#">Support</a>
+								  </div>
+								</div>
+
+								.navigation {
+								  display: flex;
+								}
+
+								.main-links {
+								  margin-left: auto;
+								}
+
+								.navigation a+a {
+								  margin-left: 5px;
+								}
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>
+							Footer on bottom of page
+						</h3>
+					</section>
+					<section>
+						<img src="img/flex-navigation.png" />
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								<div class="navigation">
+								  <a href="#">Home</a>
+								  <div class="main-links">
+								    <a href="#">Docs</a>
+								    <a href="#">Support</a>
+								  </div>
+								</div>
+
+								.navigation {
+								  display: flex;
+								}
+
+								.main-links {
+								  margin-left: auto;
+								}
+
+								.navigation a+a {
+								  margin-left: 5px;
+								}
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Footer at bottom of screen.</h3>
+						<p>
+							<small>Interactive Example</small>
+						</p>
+						<p>
+							<a href="https://www.w3schools.com/code/tryit.asp?filename=FH8AFH9IF8S8">Example</a>
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Flex Properties</h3>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								flex-grow: (number)
+							</code>
+						</pre>
+						<p>Defines how much space an element should grow. Higher numbers mean more space proportionality.</p>
+						<img src="img/flex-grow-example.png" />
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								flex-shrink: (number)
+							</code>
+						</pre>
+						<p>Defines how much space an element should show. Higher numbers means it shrinks more. (Think reverse flex grow).</p>
+						<img src="img/flex-grow-example.png" />
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								flex-basis: (number)
+							</code>
+						</pre>
+						<p>What is the base size of an item in a flex container. Note: This doesn't mean the item is always this size. It will shrink and grow if you have those values set.</p>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
