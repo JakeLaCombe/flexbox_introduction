@@ -98,7 +98,7 @@
 				</section>
 				<section>
 					<h2>Cool Features</h2>
-					<p>Easily switch diretion of the children</p>
+					<p>Easily switch direction of the children</p>
 					<p>Switch element order on the fly (vertical or horizontal)</p>
 					<p>Coveted Text in middle of the element with ease.</p>
 				</section>
@@ -125,7 +125,7 @@
 				<section>
 					<section>
 						<h3>
-							Beginner actions
+							Container Properties
 						</h3>
 					</section>
 					<section>
@@ -134,7 +134,9 @@
 								flex-direction: (row | column)
 							</code>
 						</pre>
-						<p>Determines the flow of the items inside the flex container.</p>
+						<p>Determines the flow of the items inside the flex container. This will be your main axis for a flexbox, with the perpendicular axis being the cross axis.</p>
+					</section>
+					<section>
 						<figure class="sample-figure">
 							<figcaption>column</figcaption>
 							<img src="img/direction-column.png" width="450" />
@@ -147,16 +149,18 @@
 					<section>
 						<pre>
 							<code data-trim>
-								order: (number)
+								flex-wrap: (nowrap | wrap | wrap-reverse);
 							</code>
 						</pre>
-						<p>Determines the ordering of elements. Works like reverse z-index.</p>
-						<img src="img/flex-normal.png" />
-						<img src="img/flex-reordered.png" />
+						<p>Flexboxes will put all items on one line by default. If you need wrapping, use this option</p>
 					</section>
 					<section>
-						<p>Order goes by value of order on the item and compares that to siblings. (2 does not mean 2nd in order)</p>
-						<img src="img/ordering-guide.png" />
+						<pre>
+							<code data-trim>
+								flex-flow: (flex-direction flex-wrap);
+							</code>
+						</pre>
+						<p>Shorthanded property of flex-direction and flex-wrap.</p>
 					</section>
 				</section>
 				<section>
@@ -193,40 +197,9 @@
 							</code>
 						</pre>
 					</section>
-				</section>
-				<section>
 					<section>
-						<h3>
-							Footer on bottom of page
-						</h3>
-					</section>
-					<section>
-						<img src="img/flex-navigation.png" />
-					</section>
-					<section>
-						<pre>
-							<code data-trim>
-								<div class="navigation">
-								  <a href="#">Home</a>
-								  <div class="main-links">
-								    <a href="#">Docs</a>
-								    <a href="#">Support</a>
-								  </div>
-								</div>
-
-								.navigation {
-								  display: flex;
-								}
-
-								.main-links {
-								  margin-left: auto;
-								}
-
-								.navigation a+a {
-								  margin-left: 5px;
-								}
-							</code>
-						</pre>
+						<h3>Why does this work?</h3>
+						<p>When you have margin set to auto, it will take up as much margin as it possibly can.</p>
 					</section>
 				</section>
 				<section>
@@ -242,7 +215,21 @@
 				</section>
 				<section>
 					<section>
-						<h3>Flex Properties</h3>
+						<h3>Flex Children Properties</h3>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								order: (number)
+							</code>
+						</pre>
+						<p>Determines the ordering of elements. Works like reverse z-index.</p>
+						<img src="img/flex-normal.png" />
+						<img src="img/flex-reordered.png" />
+					</section>
+					<section>
+						<p>Order goes by value of order on the item and compares that to siblings. (2 does not mean 2nd in order)</p>
+						<img src="img/ordering-guide.png" />
 					</section>
 					<section>
 						<pre>
@@ -269,6 +256,57 @@
 							</code>
 						</pre>
 						<p>What is the base size of an item in a flex container. Note: This doesn't mean the item is always this size. It will shrink and grow if you have those values set.</p>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								flex: (number number number)
+							</code>
+						</pre>
+						<p>This is the shorthand notation of all these properties. (flex-grow, flex-shrink, flex-basis)</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Alignment Properties</h3>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								justify-content: (constant)
+							</code>
+						</pre>
+						<p>How items should be aligned on the main axis (dictated by flex-direction). Applies to Parent.</p>
+					</section>
+					<section>
+						<img src="img/align-items.png" />
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								align-items: (constant)
+							</code>
+						</pre>
+						<p>How items should be aligned on the cross axis (dictated by flex-direction). Applies to Parent</p>
+					</section>
+					<section>
+						<img src="img/justify-content.png" />
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								align-self: (constant)
+							</code>
+						</pre>
+						<p>The same idea of align-items, except it applies to an individual flex child.</p>
+					</section>
+					<section>
+						<pre>
+							<code data-trim>
+								align-content: (constant)
+							</code>
+						</pre>
+						<p>The same as justify context, but instead applies to the cross axis when more it spans more than a single line.</p>
 					</section>
 				</section>
 			</div>
