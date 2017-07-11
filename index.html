@@ -309,6 +309,56 @@
 						<p>The same as justify context, but instead applies to the cross axis when more it spans more than a single line.</p>
 					</section>
 				</section>
+				<section>
+					<section>
+						<h3>Alignment Examples</h3>
+					</section>
+					<section>
+						<img src="img/flex-centered.png" width="400" height="150"/>
+						<pre>
+							<code data-trim>
+								<div class="hero">
+							    <p>Hello World!</p>
+								</div>
+
+								.hero {
+							    min-height: 400px;
+							    display: flex;
+							    align-items: center;
+							    justify-content: center;
+							  }
+							</code>
+						</pre>
+					</section>
+					<section>
+						<img src="img/flex-column.png" width="550" height="150"/>
+						<pre>
+							<code data-trim>
+							<div class="container">
+						    <div></div>
+						    <div></div>
+						    <div></div>
+							</div>
+
+							.container {
+							  display: flex;
+							}
+
+							.container > div {
+							  flex-grow: 1;
+							  text-align: center;
+							}
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<h3>More <a href="https://www.w3schools.com/code/tryit.asp?filename=FHFJ7Y82Z07M">Interactivity!</a></h3>
+				</section>
+				<section>
+					<h3>Thanks for coming!</h3>
+					<p>Biggest resource was <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS Tricks - Complete Guide to Flexbox</a></p>
+				</section>
 			</div>
 		</div>
 
